@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cyber Ninja</title>
+  <link rel="stylesheet" href="../Style/main.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="text/javascript" src="sprinkle.js"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-image: url('C:\\Users\\MADHAN\\Documents\\Frontend\\components\\logo-main.jpg');
+      background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+    }
+    @font-face {
+        font-family: "Kimberley";
+        src: url("C:\\Users\\MADHAN\\Documents\\Frontend\\components\\Adidas Football 2002.ttf") format("truetype");
+        }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .button-container {
+      position: absolute;
+      top: 70%;
+      left: 42%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    .button {
+      /* margin-top: 200%; */
+
+      background-color: rgba(0, 0, 0, 0); /* Transparent background color */
+      /* color: rgba(255, 255, 255, 1); Fully opaque text color */
+      color: rgba(0, 0, 0, 0);
+      height: 7%;
+      padding: 15px 30px;
+      font-size: 100px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: "Kimberley";
+    }
+
+    .button:hover {
+      background-color: rgba(0, 0, 0, 0); /* Fully transparent hover background color */
+      /* color: rgb(104, 195, 255); */
+    }
+
+    
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <video autoplay loop muted>
+      <source src="../components/Front Video Android.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="button-container">
+      <button id="navigateButton" class="button" >START</button>
+    </div>
+  </div>
+
+  
+
+  <script>
+    // Get a reference to the button element
+
+        // function sendScanRequest() {
+          
+        //     // console.log(data)
+        //     fetch("http://127.0.0.1:8000/remove/", {
+        //       method: 'GET',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //     })
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         // Display the response message or handle errors
+        //         console.log(data);
+        //     })
+        //     .catch(error => {
+        //         console.error('Error:', error);
+        //     });
+        // }
+
+
+    const navigateButton = document.getElementById("navigateButton");
+
+    // Add a click event listener to the button
+    navigateButton.addEventListener("click", function() {
+      // Navigate to first.html when the button is clicked
+      window.location.href = "main.html";
+    });
+  </script>
+</body>
+</html>

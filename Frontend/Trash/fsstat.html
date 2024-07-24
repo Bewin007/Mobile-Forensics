@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Disk</title>
+    <style>
+  .grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.grid-item {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: transparent; /* Changed background color to transparent */
+  margin-top: 10%;
+}
+
+.grid-item p {
+  color: white;
+}
+
+.grid-item h2 {
+  color: white;
+}
+
+.grid-item label {
+  color: white;
+}
+
+.grid-item button {
+  background-color: white;
+}
+
+.grid-item button:hover {
+  background-color: #fbc400;
+}
+
+  
+        .button:hover{
+            background-color: #FBC400;
+        }
+        .button{
+          position: absolute;
+            /* bottom: -350%;
+            left: 50%;
+            right: 50%;
+            margin-left: -104.5px;  */
+            background-color: black;
+            color: white;
+            height:7%;
+            padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+        }
+
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .grid-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        
+    </style>
+</head>
+<body>
+  <video autoplay loop muted playsinline id="video-background">
+    <!-- Multiple source files for cross-browser compatibility -->
+    <source src="../components/Jeeva UI Plain.mp4" type="video/mp4">
+    <!-- <source src="path_to_video/video.webm" type="video/webm"> -->
+    <!-- Add more source files if needed for other formats -->
+</video>
+    <h1 style="color: white;">Disk</h1>
+    <div class="grid-container">
+      <div class="grid-item">
+    
+    <!-- Create image -->
+    <h2>Create image</h2>
+    <label for="create-image">Enter Location:</label>
+    <p>To clone the disk
+    <input type="text" id="create-image">
+    <input type="text" id="loc-image">
+    <button onclick="createimage()">Scan</button>
+    <pre id="create-image"></pre>
+    </div>
+    <script>
+        function createimage() {
+        const location = document.getElementById("create-image").value;
+        const save_name = document.getElementById("loc-image").value;
+        const data = { scan_type: "Create image", location: location,save_name:save_name };
+        sendScanRequest(data, "aggressive-result");
+    }
+      </script>
+      
+
+      <div class="grid-item">
+
+    <!-- Basic -->
+    <h2>Basic</h2>
+    <label for="img-info">Enter image info:</label>
+    <p>a command-line tool from The Sleuth Kit (TSK), a forensic toolkit for disk images and filesystems. It offers filesystem insights and stats, aiding investigators in understanding layout and usage patterns. Useful for investigations, it sheds light on filesystem structure and characteristics.</p>
+    <input type="text" id="img-info" >
+    <button onclick="imginfo()">Scan</button>
+    <pre id="img-info"></pre>
+      </div>
+      <script>
+        function imginfo() {
+        const location = document.getElementById("img-info").value;
+        const data = { scan_type: "Basic", location: location };
+        sendScanRequest(data, "img-info");
+    }
+      </script>
+
+      <div class="grid-item">
+
+        
+
+    <!--Meta data of image-->
+    <h2>Meta data of image</h2>
+    <label for="meta-img">Enter Meta data of image:</label>
+    <p>command is used to display the metadata of files and directories within a given filesystem. Metadata includes information about the file or directory itself, such as its name, size, timestamps, permissions, and other attributes</p>
+    <input type="text" id="meta-img">
+    <button onclick="metaimg()">Scan</button>
+    <pre id="meta-img"></pre>
+      </div>
+      <script>
+        function metaimg() {
+        const location = document.getElementById("meta-img").value;
+        const data = { scan_type: "Meta data of image", location: location };
+        sendScanRequest(data, "meta-img");
+    }
+      </script>  
+       <div class="grid-item">
+
+      <!--hash value-->
+      <h2>hash value</h2>
+      <label for="hash-value">Enter Locatin:</label>
+      <p>Hashrat is a hash-generation utility that supports the md5, sha1, sha256, sha512, whirlpool, jh-244, jh256, jh-384 and jh-512 hash functions, and also the HMAC versions of those functions.</p>
+      <input type="text" id="alg">
+      <input type="text" id="name">
+      <button onclick="hashvalue()">Scan</button>
+      <pre id="hash-value"></pre>
+      </div>
+      <script>
+          function hashvalue() {
+          const alg = document.getElementById("alg").value;
+          const name = document.getElementById("name").value;
+          const data = { scan_type: "hash value", alg:alg,name:name };
+          sendScanRequest(data, "hash-value");
+      }
+        </script>
+      
+      
+
+</div>                                                      
+<div style="margin-top: 10px;">
+  <button
+  id="back" class="button">Back
+</button>
+
+</div>
+  <script>
+
+      function sendScanRequest(data, resultElementId) {
+          console.log(data)
+          fetch("http://127.0.0.1:8000/fsstat/", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+          })
+          .then(response => response.text())
+          .then(result => {
+              // document.getElementById(resultEleme
+              
+              alert(result);
+          })
+          .catch(error => {
+              console.error("Error occurred:", error);
+          });
+      }
+  </script>
+
+
+<script>
+
+
+
+// Get a reference to the button element
+const navigateButton1 = document.getElementById("back");
+
+// Add a click event listener to the button
+navigateButton1.addEventListener("click", function() {
+    // Navigate to index.html when the button is clicked
+    window.location.href = "Tools.html";
+});
+</script>
+
+</body>
+</html>
+
+

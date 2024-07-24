@@ -1,0 +1,90 @@
+
+    // const path = require('path');
+
+    // function openFile() {
+    // const { exec } = require('child_process');
+    // var fileInput = document.getElementById('file-input');
+    // var file = fileInput.files[0];
+
+    // if (file) {
+    //     var filePath = file.path;
+    //     console.log("Actual file path:", filePath);
+
+    //     var command = `start excel "${filePath}"`; 
+    //     exec(command, (error, stdout, stderr) => {
+    //         if (error) {
+    //             console.error(`Error executing command: ${error}`);
+    //             return;
+    //         }
+
+    //         console.log(`Command output: ${stdout}`);
+    //         console.error(`Command error: ${stderr}`);
+    //     });
+    //     } else {
+    //         alert('Please select a file.');
+    //     }
+    // }
+
+    //     function showFileExplorer() {
+    //         var fileExplorer = document.querySelector('.file-explorer');
+    //         fileExplorer.style.display = 'block';
+    //         var fileList = document.getElementById('file-list');
+    //         fileList.innerHTML = '';
+    //         var fileInput = document.createElement('input');
+    //         fileInput.type = 'file';
+    //         fileInput.id = 'file-input';
+    //         fileInput.addEventListener('change', openFile);
+    //         fileExplorer.appendChild(fileInput);
+    //         fileInput.click();
+    //     }
+
+
+
+
+
+
+        <!-- <div class="file-explorer">
+        <h2>Select a File</h2>
+        <ul class="file-list" id="file-list">
+        </ul>
+    </div> -->
+<div>
+    <button onclick="changeColor(this)">
+        <img src="../components/Binwalk.png" alt="Image 2">
+    </button>
+</div>
+<div>
+    <button onclick="changeColor(this)">
+        <img src="image3.jpg" alt="Image 3">
+    </button>
+</div> 
+<div>
+    <button onclick="changeColor(this)">
+        <img src="image1.jpg" alt="Image 1">
+    </button>
+</div>
+<div>
+    <button onclick="changeColor(this)">
+        <img src="image2.jpg" alt="Image 2">
+    </button>
+</div>
+<div>
+    <button onclick="changeColor(this)">
+        <img src="image3.jpg" alt="Image 3">
+    </button>
+</div> 
+<div>
+    <button onclick="changeColor(this)">
+        <img src="image1.jpg" alt="Image 1">
+    </button>
+</div>
+<div>
+    <button onclick="changeColor(this)">
+        <img src="image2.jpg" alt="Image 2">
+    </button>
+</div>
+<div>
+    <button onclick="changeColor(this)">
+        <img src="image3.jpg" alt="Image 3">
+    </button>
+</div> 

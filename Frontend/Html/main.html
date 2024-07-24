@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Explorer</title>
+    <style>
+        body {
+            background-color: black;
+            background-image: url('C:\\Users\\MADHAN\\Documents\\Frontend\\components\\ESP.Xplico.png');
+        }
+
+        @font-face {
+            font-family: "Kimberley";
+            src: url("C:\\Users\\MADHAN\\Documents\\Frontend\\components\\Blacknorthdemo-mLE25.otf") format("truetype");
+        }
+
+        /* Styling for the file explorer */
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .flex-container > div {
+            width: 150px;
+            height: 150px;
+            margin: 38px;
+            text-align: center;
+            line-height: 150px;
+            font-size: 30px;
+        }
+
+        .flex-container img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* Hide the file input */
+        input[type="file"] {
+            display: none;
+        }
+
+        button {
+            height: 150px;
+            width: 200px;
+            font-size: 30px;
+            font-family: "Kimberley";
+            position: fixed;
+        }
+
+        button:hover {
+            background-color: rgb(104, 195, 255);
+        }
+
+        #output-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgb(0, 0, 0);
+            display: none;
+        }
+
+        #output {
+            width: 80%;
+            height: 80%;
+            margin: auto;
+            overflow-y: auto;
+            background-color: rgb(0, 0, 0);
+            color: white;
+            padding: 10px;
+        }
+
+        #close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            font-size: 20px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="flex-container">
+    <div>
+        <button onclick="executePythonScript('Accounts.py')">Accounts</button>
+    </div>
+
+    <div>
+        <button onclick="test('Bluetooth.py')">Bluetooth</button>
+    </div>
+
+    <div>
+        <button onclick="test('Calendar.py')">Calendar</button>
+    </div>
+
+    <div>
+        <button onclick="test('Call_logs.py')">Call Logs</button>
+    </div>
+
+    <div>
+        <button onclick="test('Contacts.py')">Contacts</button>
+    </div>
+
+    
+    <div>
+        <button onclick="test('Current_Running_Processes.py')">Current Running Processes</button>
+    </div>
+
+    
+    <div>
+        <button onclick="test('Image Data.py')">Image Data</button>
+    </div>
+
+    
+    <div>
+        <button onclick="test('Log_Extraction.py')">Log Extraction</button>
+    </div>
+
+    
+    <div>
+        <button onclick="test('Media_Extraction.py')">Media Extraction</button>
+    </div>
+
+    
+    <div>
+        <button onclick="test('Packages.py')">Packages</button>
+    </div>
+
+    
+    <div>
+        <button onclick="test('Ram_Capture.py')">RAM Capture</button>
+    </div>
+
+    <div>
+        <button onclick="test('Recordings.py')">Recordings</button>
+    </div>
+
+    <div>
+        <button onclick="test('Recovery.py')">Recovery</button>
+    </div>
+
+    <div>
+        <button onclick="test('Screenshots.py')">Screenshots</button>
+    </div>
+
+    <div>
+        <button onclick="test('SMS_Logs.py')">SMS Logs</button>
+    </div>
+
+    <div>
+        <button onclick="test('Snap.py')">Snapchat Media</button>
+    </div>
+
+    <div>
+        <button onclick="test('Telegram_Media.py')">Telegram Media</button>
+    </div>
+
+    <div>
+        <button onclick="test('WhatsApp Media.py')">WhatsApp Media</button>
+    </div>
+
+    <div>
+        <button onclick="test('WhatsApp_Logs.py')">WhatsApp Logs</button>
+    </div>
+
+    <div>
+        <button onclick="test('Wifi_History.py')">Wifi History</button>
+    </div>
+
+
+
+    <!-- Add more buttons similarly for other functionalities -->
+</div>
+
+<div id="output-container">
+    <button id="close-button" onclick="closeTerminal()">Close</button>
+    <div id="output"></div>
+</div>
+
+<script>
+    const { exec } = require('child_process');
+    let cmdProcess;
+
+    function executePythonScript(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+
+    function test(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+
+    function test2(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+
+    function test3(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+
+    function test4(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test5(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test6(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test7(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test8(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test9(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test10(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test11(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test12(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test13(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test14(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test15(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test16(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test17(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test18(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test19(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+    function test20(fileName) {
+        const filePath = `C:\\Users\\MADHAN\\Documents\\Frontend\\Code\\${fileName}`;
+        cmdProcess = exec(`python "${filePath}"`);
+
+        cmdProcess.stdout.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.stderr.on('data', (data) => {
+            document.getElementById('output').innerText += data.toString();
+        });
+
+        cmdProcess.on('close', (code) => {
+            document.getElementById('output').innerText += `\nChild process exited with code ${code}`;
+        });
+
+        document.getElementById('output-container').style.display = 'block';
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function closeTerminal() {
+        if (cmdProcess) {
+            cmdProcess.kill(); // Kill the process
+        }
+        document.getElementById('output-container').style.display = 'none';
+        document.getElementById('output').innerText = ''; // Clear the output
+    }
+</script>
+
+</body>
+</html>
